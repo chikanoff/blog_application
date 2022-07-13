@@ -4,6 +4,10 @@
   <title>Articles</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
     .main {
       width: 100%;
       display: flex;
@@ -55,6 +59,32 @@
     .home-link {
       text-decoration: none;
       color: black;
+      margin-top: 15px;
+    }
+
+    .article-block {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align: center;
+        margin: 10px 0 10px 0
+    }
+
+    .comments-block {
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        align: left;
+        margin: 10px 0 10px 0
+    }
+
+    .comment-block {
+        display: flex;
+        flex-direction: row;
+        align-items: left;
+        align: left;
+        margin-bottom: 5px
     }
 
   </style>
@@ -65,9 +95,32 @@
     
     <a class="home-link" href="/">Назад</a>
 
-    <h1><%= @article.title %></h1>
+    <div class="article-block">
+        <h1><%= @article.title %></h1>
+        <p><%= @article.body %></p>
+    </div>
+    
+    <hr width="100%">
+    <h2>Comments</h2>
+    <div class="comments-block">
+        <%= render @article.comments %>
+    </div>
 
-    <p><%= @article.body %></p>
+    <h2>Add a comment:</h2>
+
+    <%= form_with model: [ @article, @article.comments.build ] do |form| %>
+        <p>
+            <%= form.label :commenter %><br>
+            <%= form.text_field :commenter %>
+        </p>
+        <p>
+            <%= form.label :body %><br>
+            <%= form.text_area :body %>
+        </p>
+        <p>
+            <%= form.submit %>
+        </p>
+    <% end %>
   </div>
 </body>
 </html>

@@ -63,8 +63,8 @@
 <body>
   <div class="main">
   <h1>Articles</h1>
-
-  <button onclick="location.href='/articles/new'" class="create-button" type="button">New</button>
+  <%= link_to "New Article", new_article_path %>
+  <%# <button onclick="location.href='/articles/new'" class="create-button" type="button">New</button> %>
 
   <div class="table">
     <table>
@@ -80,15 +80,14 @@
         <% @articles.each do |article| %>
           <tr>
             <td>
-              <a class="article-link" href="articles/<%= article.id %>">
-                <%= article.title %>
-              </a>
+              <%= link_to article.title, article %>
             </td>
             <td><%= article.body %></td>
             <td><%= article.updated_at %></td>
             <td>
-              <%= link_to "Edit", edit_article_path(@article) %>
-              <button class="delete-button">Delete</button>
+                <%= button_to "Edit", edit_article_path(article.id), method: :get %>
+
+                <%= button_to "Delete", article_path(article.id), method: :delete %>
             </td>
           </tr>
         <% end %>
