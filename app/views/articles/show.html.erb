@@ -109,12 +109,8 @@
     <h2>Add a comment:</h2>
 
     <%= form_with model: [ @article, @article.comments.build ] do |form| %>
+        <p>Commenter: <strong><%= current_user.email %></strong></p>
         <p>
-            <%= form.label :commenter %><br>
-            <%= form.text_field :commenter %>
-        </p>
-        <p>
-            <%= form.label :body %><br>
             <%= form.text_area :body %>
         </p>
         <p>

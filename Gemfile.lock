@@ -102,6 +102,7 @@ GEM
     erubi (1.10.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    htmlbeautifier (1.4.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.1.3)
@@ -238,6 +239,7 @@ DEPENDENCIES
   debug
   devise (~> 4.8)
   dotenv-rails
+  htmlbeautifier
   importmap-rails
   jbuilder
   pg (~> 1.1)

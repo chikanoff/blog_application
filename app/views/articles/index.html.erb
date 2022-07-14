@@ -72,6 +72,7 @@
         <tr>
           <th>Title</th>
           <th>Body</th>
+          <th>Comments count</th>
           <th>Updated at</th>
           <th>Actions</th>
         </tr>
@@ -82,7 +83,14 @@
             <td>
               <%= link_to article.title, article %>
             </td>
-            <td><%= article.body %></td>
+            <td>
+              <% if article.body.length > 15 %>
+                <%= article.body[0..15] + "..." %>
+              <% else %>
+                <%= article.body %>
+              <% end %>
+            </td>
+            <td><%= article.comments.count %></td>
             <td><%= article.updated_at %></td>
             <td>
                 <%= button_to "Edit", edit_article_path(article.id), method: :get %>
