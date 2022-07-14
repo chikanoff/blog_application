@@ -6,7 +6,6 @@
       <div><%= message %></div>
     <% end %>
   </div>
-
   <div>
     <%= form.label :body %><br>
     <%= form.text_area :body %><br>
@@ -14,7 +13,10 @@
       <div><%= message %></div>
     <% end %>
   </div>
-
+  <div>
+    <%= form.label :tags %><br>
+    <%= form.collection_check_boxes :tags, tags, :id, :name %>
+  </div>
   <div>
     <%= form.submit %>
   </div>

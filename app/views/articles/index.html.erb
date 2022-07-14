@@ -1,79 +1,83 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Articles</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <style>
-    .main {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      align: center;
-    }
+<style>
+  .main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align: center;
+  }
 
-    .table {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      align: center;
-      margin: 0 25px 0 25px
-    }
-    
-    table {
-      width: 100%;
-      border: 1px solid #000;
-    }
+  .table {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align: center;
+    margin: 0 25px 0 25px
+  }
 
-    th, td {
-      width: 25%;
-      text-align: center;
-      vertical-align: top;
-      border: 1px solid #000;
-    }
+  table {
+    width: 100%;
+    border: 1px solid #000;
+  }
 
-    .create-button {
-      margin-bottom: 10px;
-      width: 100px;
-      height: 30px;
-      cursor: pointer;
-    }
+  th, td {
+    text-align: center;
+    vertical-align: top;
+    border: 1px solid #000;
+  }
 
-    .edit-button {
-      width: 100px;
-      height: 30px;
-      cursor: pointer;
-    }
+  .create-button {
+    margin-bottom: 10px;
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+  }
 
-    .delete-button {
-      width: 100px;
-      height: 30px;
-      cursor: pointer;
-    }
+  .edit-button {
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+  }
 
-    .article-link {
-      text-decoration: none;
-      color: black;
-    }
+  .delete-button {
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+  }
 
-  </style>
-</head>
-
-<body>
-  <div class="main">
+  .article-link {
+    text-decoration: none;
+    color: black;
+  }
+  .table-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    align: center;
+  }
+</style>
+<div class="main">
   <h1>Articles</h1>
   <%= link_to "New Article", new_article_path %>
-  <%# <button onclick="location.href='/articles/new'" class="create-button" type="button">New</button> %>
-
   <div class="table">
     <table>
+      <colgroup>
+        <col span="1" style="width: 15%;">
+        <col span="1" style="width: 15%;">
+        <col span="1" style="width: 10%;">
+        <col span="1" style="width: 20%;">
+        <col span="1" style="width: 20%;">
+        <col span="1" style="width: 20%;">
+      </colgroup>
       <thead>
         <tr>
           <th>Title</th>
           <th>Body</th>
           <th>Comments count</th>
           <th>Updated at</th>
+          <th>Tags</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -93,15 +97,17 @@
             <td><%= article.comments.count %></td>
             <td><%= article.updated_at %></td>
             <td>
-                <%= button_to "Edit", edit_article_path(article.id), method: :get %>
-
-                <%= button_to "Delete", article_path(article.id), method: :delete %>
+              <%= article.tags.map {|tag| tag.name } * ", "%>
+            </td>
+            <td>
+              <div class="table-actions">
+                <%= button_to "Edit", edit_article_path(article.id), method: :get, :class => 'button' %>
+                <%= button_to "Delete", article_path(article.id), method: :delete, :class => 'button' %>
+              </div>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
-  </div>
-</body>
-</html>
+</div>

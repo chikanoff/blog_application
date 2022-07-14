@@ -25,10 +25,12 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    @tags = Tag.excluding(@article.tags).all
   end
 
   def update
     if @article.update(article_params)
+      puts("@article.tags: #{article_params['tags']}")
       redirect_to @article
     else
       render :edit, status: :unprocessable_entity
@@ -47,7 +49,7 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-      params.require(:article).permit(:title, :body)
+      params.require(:article).permit(:title, :body, :tags)
     end
 
 end

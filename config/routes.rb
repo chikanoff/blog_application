@@ -4,7 +4,10 @@ Rails.application.routes.draw do
 
   resources :articles do
     resources :comments
+    resources :tags
   end
+  
+  resources :tags
 
   devise_scope :user do
     # Redirests signing out users back to sign-in
