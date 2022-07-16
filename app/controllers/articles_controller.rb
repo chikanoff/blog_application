@@ -3,8 +3,12 @@ class ArticlesController < ApplicationController
   before_action :fetch_article, only: %i[show edit update destroy]
 
   def index
-    @all_tags = Tag.all
-    params[:tags_ids] ? @articles = Article.joins(:tags).where( tags: {id: params[:tags_ids]}).all : @articles = Article.all
+    @available_tags = Tag.where.not(id: params[:tags_ids])
+    @articles = if params[:tags_ids].present?
+      Article.includes(:taggings).where(taggings: { tag_id: params[:tags_ids] })
+    else
+      Article.all
+    end
   end
 
   def show

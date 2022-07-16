@@ -64,9 +64,10 @@
   <div class="sidebar-section">
     <div class="section-title">Filter by Tags</div>
     <div class="tags">
-      <% @all_tags.each do |tag| %>
-        <%= link_to tag.name, articles_path(tags_ids: (params[:tags_ids] || []) + [tag.id]) %>
+      <% @available_tags.each do |tag| %>
+        <%= link_to tag.name, articles_path(tags_ids: params.fetch(:tags_ids, []) + [tag.id]) %>
       <% end %>
+      <%= link_to 'Clear filter', articles_path(tags_ids: [])%>
     </div>
   </div>
   <div class="table">
