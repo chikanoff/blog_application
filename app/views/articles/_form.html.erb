@@ -14,8 +14,8 @@
     <% end %>
   </div>
   <div>
-    <%= form.label :tags %><br>
-    <%= form.collection_check_boxes :tags, tags, :id, :name %>
+    Tags:<br>
+    <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
   </div>
   <div>
     <%= form.submit %>

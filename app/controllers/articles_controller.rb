@@ -3,7 +3,8 @@ class ArticlesController < ApplicationController
   before_action :fetch_article, only: %i[show edit update destroy]
 
   def index
-    @articles = Article.all
+    @all_tags = Tag.all
+    params[:tags_ids] ? @articles = Article.joins(:tags).where( tags: {id: params[:tags_ids]}).all : @articles = Article.all
   end
 
   def show
@@ -11,6 +12,7 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    @tags = Tag.excluding(@article.tags).all
   end
 
   def create
@@ -30,7 +32,6 @@ class ArticlesController < ApplicationController
 
   def update
     if @article.update(article_params)
-      puts("@article.tags: #{article_params['tags']}")
       redirect_to @article
     else
       render :edit, status: :unprocessable_entity
@@ -49,7 +50,7 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-      params.require(:article).permit(:title, :body, :tags)
+      params.require(:article).permit(:title, :body, :tag_ids => [])
     end
 
 end
