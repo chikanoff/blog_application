@@ -1,0 +1,58 @@
+<style>
+  .main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align: center;
+  }
+
+  .table {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align: center;
+    margin: 0 25px 0 25px
+  }
+
+  .tag-block {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align: center;
+    margin: 10px 25px 10px 25px
+  }
+
+  .tag-block-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align: center;
+    margin-left: 15px;
+  }
+
+  .tag-link {
+    text-decoration: none;
+    color: black;
+  }
+</style>
+<div class="main">
+  <h1>Tags</h1>
+  <%= link_to "New Tag", new_tag_path %>
+  <div class="table">
+    <% @tags.each do |tag| %>
+      <div class="tag-block">
+        <%= link_to tag.name, tag_path(tag), :class => 'tag-link' %>
+        <div class="tag-block-actions">
+          <%= button_to "Edit", edit_tag_path(tag), :class => 'button', method: :get %>
+          <%= button_to "Delete", tag_path(tag), method: :delete, data: { confirm: "Are you sure?" }, :class => 'button' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

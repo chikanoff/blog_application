@@ -3,7 +3,12 @@ class ArticlesController < ApplicationController
   before_action :fetch_article, only: %i[show edit update destroy]
 
   def index
-    @articles = Article.all
+    @available_tags = Tag.where.not(id: params[:tags_ids])
+    @articles = if params[:tags_ids].present?
+      Article.includes(:taggings).where(taggings: { tag_id: params[:tags_ids] })
+    else
+      Article.all
+    end
   end
 
   def show
@@ -11,6 +16,7 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    @tags = Tag.excluding(@article.tags).all
   end
 
   def create
@@ -25,6 +31,7 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    @tags = Tag.excluding(@article.tags).all
   end
 
   def update
@@ -47,7 +54,7 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-      params.require(:article).permit(:title, :body)
+      params.require(:article).permit(:title, :body, :tag_ids => [])
     end
 
 end
