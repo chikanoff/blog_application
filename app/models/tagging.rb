@@ -9,6 +9,6 @@
 #  tag_id     :bigint           not null
 #
 class Tagging < ApplicationRecord
-    belongs_to :tags
-    belongs_to :articles
+    belongs_to :tag
+    belongs_to :article
 end
