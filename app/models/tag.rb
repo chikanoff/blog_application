@@ -11,5 +11,5 @@ class Tag < ApplicationRecord
     has_many :taggings, dependent: :destroy
     has_many :articles, through: :taggings
 
-    validates :name, presence: true, length: { minimum: 5 }
+    validates :name, presence: true
 end

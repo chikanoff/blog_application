@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   def index
     @available_tags = Tag.where.not(id: params[:tags_ids])
     @articles = if params[:tags_ids].present?
-      Article.includes(taggings: :tag).where(taggings: { tag_id: params[:tags_ids] })
+      Article.select_with_tags(*params[:tags_ids])
     else
       Article.all
     end

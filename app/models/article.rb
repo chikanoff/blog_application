@@ -17,4 +17,9 @@ class Article < ApplicationRecord
   
   validates :title, presence: true
   validates :body, presence: true, length: { minimum: 10 }
+
+  def self.select_with_tags(*tags_ids)
+    a = Article.arel_table
+    joins(:tags).where(tags: { id: tags_ids }).group(:id).having(a[:id].count.gteq(tags_ids.length))
+  end
 end

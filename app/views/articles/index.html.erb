@@ -69,6 +69,10 @@
       <% end %>
       <%= link_to 'Clear filter', articles_path(tags_ids: [])%>
     </div>
+    <div class="selected-tags">
+      Selected tags: 
+      <%= params.fetch(:tags_ids, []).map { |id| Tag.find(id).name }.join(', ') %>
+    </div>
   </div>
   <div class="table">
     <table>
