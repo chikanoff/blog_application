@@ -1,119 +1,27 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Articles</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <style>
-      * {
-          margin: 0;
-          padding: 0;
-      }
-      .main {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        align: center;
-      }
-
-      .table {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        align: center;
-        margin: 0 25px 0 25px
-      }
-
-      table {
-        width: 100%;
-        border: 1px solid #000;
-      }
-
-      th, td {
-        width: 25%;
-        text-align: center;
-        vertical-align: top;
-        border: 1px solid #000;
-      }
-
-      .create-button {
-        margin-bottom: 10px;
-        width: 100px;
-        height: 30px;
-        cursor: pointer;
-      }
-
-      .edit-button {
-        width: 100px;
-        height: 30px;
-        cursor: pointer;
-      }
-
-      .delete-button {
-        width: 100px;
-        height: 30px;
-        cursor: pointer;
-      }
-
-      .home-link {
-        text-decoration: none;
-        color: black;
-        margin-top: 15px;
-      }
-
-      .article-block {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          align: center;
-          margin: 10px 0 10px 0
-      }
-
-      .comments-block {
-          display: flex;
-          flex-direction: column;
-          align-items: left;
-          align: left;
-          margin: 10px 0 10px 0
-      }
-
-      .comment-block {
-          display: flex;
-          flex-direction: row;
-          align-items: left;
-          align: left;
-          margin-bottom: 5px
-      }
-    </style>
-  </head>
-  <body>
-    <div class="main">
-      <a class="home-link" href="/">Назад</a>
-      <div class="article-block">
-        <h1><%= @article.title %></h1>
-        <p><%= @article.body %></p>
-        <p>
-          Tags:
-          <%= @article.tags.map {|tag| tag.name } * ", "%>
-        </p>
-      </div>
-      <hr width="100%">
-      <h2>Comments</h2>
-      <div class="comments-block">
-        <%= render @article.comments %>
-      </div>
-      <h2>Add a comment:</h2>
-      <%= form_with model: [ @article, @article.comments.build ] do |form| %>
-        <p>Commenter: <strong><%= current_user.email %></strong></p>
-        <p>
-          <%= form.text_area :body %>
-        </p>
-        <p>
-          <%= form.submit %>
-        </p>
-      <% end %>
-    </div>
-  </body>
-</html>
+<%= stylesheet_link_tag "show_article", "data-turbo-track": "reload" %>
+<div class="main">
+  <a class="home-link" href="/">Назад</a>
+  <div class="article-block">
+    <h1><%= @article.title %></h1>
+    <p><%= @article.body %></p>
+    <p>
+      Tags:
+      <%= @article.tags.map {|tag| tag.name } * ", "%>
+    </p>
+  </div>
+  <hr width="100%">
+  <h2>Comments</h2>
+  <div class="comments-block">
+    <%= render @article.comments %>
+  </div>
+  <h2>Add a comment:</h2>
+  <%= form_with model: [ @article, @article.comments.build ] do |form| %>
+    <p>Commenter: <strong><%= current_user.email %></strong></p>
+    <p>
+      <%= form.text_area :body %>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
+</div>

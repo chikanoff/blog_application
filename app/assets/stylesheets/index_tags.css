@@ -1,0 +1,41 @@
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align: center;
+}
+
+.table {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align: center;
+  margin: 0 25px 0 25px
+}
+
+.tag-block {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align: center;
+  margin: 10px 25px 10px 25px
+}
+
+.tag-block-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align: center;
+  margin-left: 15px;
+}
+
+.tag-link {
+  text-decoration: none;
+  color: black;
+}

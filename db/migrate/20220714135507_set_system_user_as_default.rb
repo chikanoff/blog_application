@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SetSystemUserAsDefault < ActiveRecord::Migration[7.0]
   class UserStub < ActiveRecord::Base
     self.table_name = :users

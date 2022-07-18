@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: taggings
@@ -9,6 +11,6 @@
 #  tag_id     :bigint           not null
 #
 class Tagging < ApplicationRecord
-    belongs_to :tag
-    belongs_to :article
+  belongs_to :tag
+  belongs_to :article
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: articles
@@ -14,7 +16,7 @@ class Article < ApplicationRecord
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
   belongs_to :user
-  
+
   validates :title, presence: true
   validates :body, presence: true, length: { minimum: 10 }
 
