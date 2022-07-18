@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: tags
@@ -8,8 +10,8 @@
 #  updated_at :datetime         not null
 #
 class Tag < ApplicationRecord
-    has_many :taggings, dependent: :destroy
-    has_many :articles, through: :taggings
+  has_many :taggings, dependent: :destroy
+  has_many :articles, through: :taggings
 
-    validates :name, presence: true
+  validates :name, presence: true
 end

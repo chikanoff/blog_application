@@ -1,18 +1,18 @@
-class ArticlesController < ApplicationController
+# frozen_string_literal: true
 
+class ArticlesController < ApplicationController
   before_action :fetch_article, only: %i[show edit update destroy]
 
   def index
     @available_tags = Tag.where.not(id: params[:tags_ids])
     @articles = if params[:tags_ids].present?
-      Article.select_with_tags(*params[:tags_ids])
-    else
-      Article.all
-    end
+                  Article.select_with_tags(*params[:tags_ids])
+                else
+                  Article.all
+                end
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @article = Article.new
@@ -49,12 +49,12 @@ class ArticlesController < ApplicationController
   end
 
   private
-    def fetch_article
-      @article = Article.find(params[:id])
-    end
 
-    def article_params
-      params.require(:article).permit(:title, :body, :tag_ids => [])
-    end
+  def fetch_article
+    @article = Article.find(params[:id])
+  end
 
+  def article_params
+    params.require(:article).permit(:title, :body, tag_ids: [])
+  end
 end

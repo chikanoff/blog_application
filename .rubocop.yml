@@ -1,0 +1,20 @@
+require: rubocop-rails
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/Documentation:
+  Enabled: false
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - "vendor/**/*"
+    - "test/fixtures/**/*"
+    - "db/**/*"
+    - "bin/**/*"
+    - "log/**/*"
+    - "tmp/**/*"
+    - "app/views/**/*"
+    - "config/environments/*"
+    - "node_modules/**/*"

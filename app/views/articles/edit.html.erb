@@ -1,28 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Articles</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <style>
-      .main {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        align: center;
-      }
-
-      .home-link {
-        text-decoration: none;
-        color: black;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="main">
-      <a class="home-link" href="/">Назад</a>
-      <h1>Edit Article</h1>
-      <%= render "form", article: @article, tags: @tags %>
-    </div>
-  </body>
-</html>
+<%= stylesheet_link_tag "edit_create_entity", "data-turbo-track": "reload" %>
+<div class="main">
+  <a class="home-link" href="/">Назад</a>
+  <h1>Edit Article</h1>
+  <%= render "form", article: @article, tags: @tags %>
+</div>
